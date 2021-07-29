@@ -16,7 +16,11 @@ class IssueController extends Controller
         $issue->issue_desc = $req->issue_desc;
         $issue->status = "pending";
         $issue->save();
-        return "issue submit success";
+        if ($issue) {
+            return redirect()->back()->with('message', 'Issue Submitted Successfully');
+        } else {
+            return redirect()->back()->with('message', 'Issue Not Submitted');
+        }
     }
 
     public function getIssue()
