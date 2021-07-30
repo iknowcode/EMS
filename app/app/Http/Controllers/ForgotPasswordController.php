@@ -48,6 +48,5 @@ class ForgotPasswordController extends Controller
             return back()->with('error', 'Opps!!! Username not Found');
         }
 
-        //return redirect('login');
     }
 }
