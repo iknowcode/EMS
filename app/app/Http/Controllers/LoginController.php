@@ -57,13 +57,6 @@ class LoginController extends Controller
                     return view('managerDashboard', compact($array));
                 } else if ($data->type_of_user == "Admin") {
 
-                    // $NumberOfUsers = DB::table('users')
-                    //     ->where(['type_of_user', 'Normal'],
-                    //         ['type_of_user', 'Manager']
-                    //         )
-                    //     ->get()
-                    //     ->count();
-
                     $normalUsers = DB::table('users')
                         ->where('type_of_user', 'Normal')
                         ->get()

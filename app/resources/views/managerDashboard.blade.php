@@ -79,7 +79,6 @@
                 <th>Type </th>
                 <th>Description </th>
                 <th>Status </th>
-                <th>Action </th>
             </tr>
         </thread>
         @foreach($issues as $i)
@@ -89,10 +88,8 @@
             <td>{{ $i->issue_type }}</td>
             <td>{{ $i->issue_desc}}</td>
             <td>{{ $i->status }}</td>
-            <td>
-                <a href="">None</a>
-            </td>
-            @endforeach
+            
+        @endforeach
     </table>
 
     <h5 class="mt-2 mt-3 mb-3">Following projects are under your management</h5>
