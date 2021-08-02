@@ -16,7 +16,7 @@
 </head>
 
 <body class="d-flex flex-column h-100 row align-items-center">
-    <x-header/>
+    <x-plainheader/>
     <h5>Following are the details of the respective employee</h5>
 
     <table class="table w-50">

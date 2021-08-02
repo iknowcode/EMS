@@ -40,7 +40,7 @@
 
     <h2 id="inner" >
 
-    Created by Team 1 <br>
+    Created by  <br>
     Sushma,<br>
     Gayatri,<br>
     Shubham<br>

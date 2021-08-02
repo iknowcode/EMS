@@ -16,7 +16,7 @@
 </head>
 
 <body class="d-flex flex-column h-100 row align-items-center">
-    <x-header />
+    <x-plainheader />
 
 
     <h4>Update Project Details</h4>

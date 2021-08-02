@@ -16,7 +16,7 @@
 </head>
 
 <body class="d-flex flex-column h-100 row align-items-center">
-    <x-header />
+    <x-plainheader />
 
     <h5>Following are the details of the Employee's Project/Projects</h5>
 

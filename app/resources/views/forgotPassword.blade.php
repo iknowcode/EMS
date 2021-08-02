@@ -18,10 +18,8 @@
 
     <div class="card text-center">
           <div class="card-body">
-            <h5 class="card-title">Forgot Password ? We got you Covered</h5>
-            <p class="card-text">
-                Enter following details to reset your secret password
-            </p>
+            <h5 class="card-title">Forgot Password ? Reset here</h5>
+           
           </div>
     </div>
 
@@ -31,9 +29,9 @@
 
 
         <div class="form-group d-flex flex-column">
-            <label for="username">Enter Employee-ID:</label>
+            <label for="username">Employee-ID</label>
 
-                <input type="text" name="username" placeholder="Enter emp_id" class="form-control"/>
+                <input type="text" name="username" placeholder="Employee Id" class="form-control"/>
                 <span style = "color:red">
                     @error('username')
                     {{$message}}
@@ -51,9 +49,9 @@
         </div>
 
         <div class="form-outline d-flex flex-column mb-4">
-            <label class="form-label" for="new_password">Enter new password:</label>
+            <label class="form-label" for="new_password">New password</label>
 
-                <input type="password" name="new_password" placeholder="Enter new password" class="form-control"/>
+                <input type="password" name="new_password" placeholder="Very Strong password" class="form-control mb-2"/>
 
                 <span style = "color:red">
                     @error('new_password')

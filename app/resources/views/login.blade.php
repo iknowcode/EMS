@@ -22,7 +22,7 @@
         <div class="card text-center">
             <div class="card-header"></div>
             <div class="card-body">
-                <h5 class="card-title">Welcome to User Login </h5>
+                <h5 class="card-title">User Login </h5>
             </div>
         </div>  
 
@@ -37,8 +37,8 @@
 
              @csrf
                <div class="form-group">
-                   <label for="">Enter Employee Id</label><br>
-                   <input type="number" class="form-control"  name="username" placeholder="Enter Employee-Id">
+                   <label for="">Employee Id</label><br>
+                   <input type="number" class="form-control"  name="username" placeholder="Employee-Id">
                   
                    <span style = "color:red">
                     @error('username')
@@ -48,8 +48,8 @@
             
                </div>
                <div class="form-group">
-                   <label for="">Enter Password</label><br>
-                   <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                   <label for="">Password</label><br>
+                   <input type="password" class="form-control" name="password" placeholder="Password">
               
                    <span style = "color:red">
                     @error('password')

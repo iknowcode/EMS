@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title> User Page </title>
+    <title> Manager Page </title>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
@@ -15,9 +15,8 @@
     </style>
 </head>
 
-<body class="d-flex flex-column h-100 row align-items-center">
-    <x-header />
-
+<body class="d-flex flex-column h-100 row align-items-center mt-auto">
+    <x-managerheader />
     <div class="card text-center">
         <div class="card-header"></div>
         <div class="card-body">
@@ -32,13 +31,14 @@
             </div>
             @endif
 
-            <p class="card-text">
-                Please find your details below
-            </p>
+            <h5 id="topdetail" class="mt-3 p-2">
+                Personal Details
+            </h5>
+
         </div>
     </div>
 
-    <table class="table w-50">
+    <table class="table w-75 mx-auto" id="personaldetails">
         <thread>
             <tr>
                 <th>Emp ID</th>
@@ -71,8 +71,8 @@
     </table>
 
 
-    <h5 class="mt-2 mt-3 mb-3"> Following are the issues by your reporties</h5>
-    <table class="table w-50">
+    <table class="table w-75 mx-auto" id="issues" hidden>
+
         <thread>
             <tr>
                 <th>Raised by (ID) </th>
@@ -92,9 +92,10 @@
         @endforeach
     </table>
 
-    <h5 class="mt-2 mt-3 mb-3">Following projects are under your management</h5>
 
-    <table class="table w-50">
+    <table class="table w-75 mx-auto" id ="projects" hidden>
+    <!-- <h5 class="mt-2 mt-3 mb-3">Projects </h5> -->
+
         <thread>
             <tr>
                 <th>Project ID</th>
@@ -121,9 +122,10 @@
             </td>
     </table>
     <!-- Reportees -->
-    <h5 class="mt-2 mt-3 mb-3">Following are the reportees under your management</h5>
 
-    <table class="table w-50">
+    <table class="table w-75 mx-auto" id="reportees" hidden>
+        <!-- <h5 class="mt-2 mt-3 mb-3">Following are the reportees</h5> -->
+
         <thread>
             <tr>
                 <th>Emp ID</th>
@@ -154,27 +156,24 @@
 
 
     <!-- Issues Raising -->
-    <div class="d-flex justify-content-around">
+    <!-- <div class="d-flex justify-content-around" id="raiseissue" > -->
 
-        <div class="d-flex flex-column m-4 p-4">
+        <div class="d-flex flex-column">
+
+            <form action="issue" method="GET" id="raiseissue" hidden>
             <h5>You may raise an issue here</h5>
-            <form action="issue" method="GET">
+
                 @csrf
-                <div class="">
-                    <div class="form-group">
                         <input type="number" class="form-control" name="emp_id" value="{{ $user->emp_id }}" hidden>
                         <input type="text" class="form-control mb-2" name="issue_type" placeholder="Enter issue type"
                             required />
                         <input type="text" class="form-control mb-2" name="issue_desc"
                             placeholder="Enter issue description" required />
                         <button type="submit" class="btn btn-warning w-100">Submit Issue</button>
-                        <br>
-                    </div>
-                </div>
             </form>
         </div>
 
-    </div>
+    <!-- </div> -->
 
 
 
@@ -185,7 +184,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="mobileModalLabel">Change Details</h5>
+                    <h5 class="modal-title" id="modallabel">Change Details</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -202,7 +201,7 @@
                                 <input type="text" id="form1input1" class="form-control" name="emp_id"
                                     value="{{ $user->emp_id }}" hidden />
                                 <input type="number" id="form1input2" class="form-control" name="newMobileNumber"
-                                    placeholder="Enter new Mobile Number" required />
+                                    placeholder="New Mobile Number" required />
 
                                 <button type="button" class="btn btn-secondary p-2 m-2"
                                     data-dismiss="modal">Close</button>
@@ -222,7 +221,7 @@
                                 <input type="number" id="form2input1" class="form-control" name="emp_id"
                                     value="{{ $user->emp_id }}" hidden />
                                 <input type="text" id="form2input2" class="form-control" name="newAddress"
-                                    placeholder="Enter New Address" required />
+                                    placeholder="New Address" required />
 
 
                                 <button type="button" class="btn btn-secondary p-2 m-2"
@@ -244,10 +243,10 @@
 
                                 <input type="number" class="form-control" name="manager_id" value="{{ $user->emp_id }}"
                                     hidden />
-                                <input type="text" class="form-control" name="emp_id"
-                                    placeholder="Enter Employee ID to add " required />
+                                <input type="text" class="form-control mb-2" name="emp_id"
+                                    placeholder="Employee ID" required />
                                 <input type="number" class="form-control" name="proj_id"
-                                    placeholder="Enter Project ID to add " required />
+                                    placeholder="Project ID" required />
 
                                 <button type="button" class="btn btn-secondary p-2 m-2"
                                     data-dismiss="modal">Close</button>
@@ -266,9 +265,9 @@
 
                                 <input type="number" class="form-control" name="manager_id" value="{{ $user->emp_id }}"
                                     hidden />
-                                <input type="number" class="form-control" name="emp_id"
-                                    placeholder="Enter Employee ID to delete" required />
-                                <input type="number" class="form-control" name="proj_id" placeholder="Enter Project ID"
+                                <input type="number" class="form-control mb-2" name="emp_id"
+                                    placeholder="Employee ID to delete" required />
+                                <input type="number" class="form-control" name="proj_id" placeholder="Project ID"
                                     required />
 
                                 <button type="button" class="btn btn-secondary p-2 m-2"
@@ -287,9 +286,13 @@
     </div>
 
     <script>
+
     function hide_section2() {
         var section1div1 = document.getElementById("updatemobile");
         var section1div2 = document.getElementById("updateaddress");
+        var modalheading = document.getElementById("modallabel");
+      
+        modalheading.innerHTML = "Change Details";
 
         //If section is hidden make it visible
 
@@ -307,6 +310,10 @@
     function hide_section1() {
         var section1div1 = document.getElementById("updatemobile");
         var section1div2 = document.getElementById("updateaddress");
+        var modalheading = document.getElementById("modallabel");
+     
+
+        modalheading.innerHTML = "Add/Remove Reportees";
 
         var section2div1 = document.getElementById("addusertoproject");
         var section2div2 = document.getElementById('deleteuserfromproject');
@@ -318,6 +325,100 @@
         section2div1.removeAttribute("hidden");
         section2div2.removeAttribute("hidden");
     }
+
+    var details = document.getElementById('topdetail');
+
+    function showpersonaldetails(){
+        var personaldetails = document.getElementById("personaldetails");
+        var issues          = document.getElementById('issues');
+        var projects        = document.getElementById('projects');
+        var reportees       = document.getElementById('reportees');
+        var issueform       = document.getElementById('raiseissue');
+       
+        details.innerHTML = "Personal Details";
+
+
+        personaldetails.removeAttribute("hidden");
+        issues.setAttribute("hidden","");
+        projects.setAttribute("hidden","");       
+        reportees.setAttribute("hidden","");       
+        issueform.setAttribute("hidden","");
+
+    }
+
+    function showreportees(){
+        var personaldetails = document.getElementById("personaldetails");
+        var issues          = document.getElementById('issues');
+        var projects        = document.getElementById('projects');
+        var reportees       = document.getElementById('reportees');
+        var issueform       = document.getElementById('raiseissue');
+        
+        details.innerHTML = "Reportees";
+
+        reportees.removeAttribute("hidden");       
+
+        issues.setAttribute("hidden","");
+        projects.setAttribute("hidden",""); 
+        issueform.setAttribute("hidden","");
+        personaldetails.setAttribute("hidden","");
+
+    }
+
+    function showprojects(){
+        var personaldetails = document.getElementById("personaldetails");
+        var issues          = document.getElementById('issues');
+        var projects        = document.getElementById('projects');
+        var reportees       = document.getElementById('reportees');
+        var issueform       = document.getElementById('raiseissue');
+
+        details.innerHTML = "Your Projects";
+
+        projects.removeAttribute("hidden");
+
+        reportees.setAttribute("hidden","");       
+        issues.setAttribute("hidden","");
+        issueform.setAttribute("hidden","");
+        personaldetails.setAttribute("hidden","");
+
+    }
+
+    function reporteeissues(){
+        var personaldetails = document.getElementById("personaldetails");
+        var issues          = document.getElementById('issues');
+        var projects        = document.getElementById('projects');
+        var reportees       = document.getElementById('reportees');
+        var issueform       = document.getElementById('raiseissue');
+
+        details.innerHTML = "Issues by Reportees";
+
+
+        issues.removeAttribute("hidden");
+
+        projects.setAttribute("hidden","");
+        reportees.setAttribute("hidden","");       
+        issueform.setAttribute("hidden","");
+        personaldetails.setAttribute("hidden","");
+
+    }
+
+    function raiseissuse(){
+        var personaldetails = document.getElementById("personaldetails");
+        var issues          = document.getElementById('issues');
+        var projects        = document.getElementById('projects');
+        var reportees       = document.getElementById('reportees');
+        var issueform       = document.getElementById('raiseissue');
+
+        details.innerHTML = "Raise an Issue";
+
+
+        issueform.removeAttribute("hidden");
+
+        issues.setAttribute("hidden","");
+        projects.setAttribute("hidden","");
+        reportees.setAttribute("hidden","");       
+        personaldetails.setAttribute("hidden","");
+    }
+
     </script>
 
 </body>
